@@ -50,6 +50,7 @@ const LightTooltip = withStyles((theme) => ({
 		boxShadow: theme.shadows[1],
 		fontSize: 13,
 		fontWeight: "400",
+		maxWidth: "200px",
 	},
 }))(Tooltip);
 
@@ -206,11 +207,11 @@ export const CreationForm = () => {
 								}}
 							/>
 							<LightTooltip
+								placement='right'
 								title='The FROM instruction initializes a new build
                  stage and sets the Base Image for subsequent instructions.
                  As such, a valid Dockerfile must start with a FROM instruction.
                  The image can be any valid image – it is especially easy to start by pulling an image from the Public Repositories.'
-								placement='right'
 								arrow
 							>
 								<div>
@@ -239,12 +240,12 @@ export const CreationForm = () => {
 									),
 								}}
 							/>
-							<LightTooltip 
+							<LightTooltip
+								placement='right'
 								title='The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY 
 					and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn’t exist, it will be 
 					created even if it’s not used in any subsequent Dockerfile instruction.The WORKDIR instruction can be used multiple times in a Dockerfile.'
-							placement='right' 
-							arrow
+								arrow
 							>
 								<div>
 									<i class='uil uil-info-circle info__icon'></i>
@@ -289,11 +290,14 @@ export const CreationForm = () => {
 											onClick={() => removeField("copy", i)}
 										></i>
 									</div>
-									<LightTooltip 
-									title='The COPY instruction copies new files or directories from <src> and adds them to 
+									<LightTooltip
+										title='The COPY instruction copies new files or directories from <src> and adds them to 
 									the filesystem of the container at the path <dest>.Multiple <src> resources may be 
 									specified but the paths of files and directories will be interpreted as relative to 
-									the source of the context of the build.' placement='right' arrow>
+									the source of the context of the build.'
+										placement='right'
+										arrow
+									>
 										<div>
 											<i class='uil uil-info-circle info__icon'></i>
 										</div>
@@ -339,9 +343,12 @@ export const CreationForm = () => {
 											onClick={() => removeField("run", i)}
 										></i>
 									</div>
-									<LightTooltip 
-									title='The RUN instruction will execute any commands in a new layer on top of the current image 
-									and commit the results. The resulting committed image will be used for the next step in the Dockerfile.' placement='right' arrow>
+									<LightTooltip
+										title='The RUN instruction will execute any commands in a new layer on top of the current image 
+									and commit the results. The resulting committed image will be used for the next step in the Dockerfile.'
+										placement='right'
+										arrow
+									>
 										<div>
 											<i class='uil uil-info-circle info__icon'></i>
 										</div>
@@ -370,15 +377,18 @@ export const CreationForm = () => {
 									),
 								}}
 							/>
-							<LightTooltip title='The CMD instruction has three forms:
+							<LightTooltip
+								title='The CMD instruction has three forms:
 					CMD ["executable","param1","param2"] (exec form, this is the preferred form)
 					CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
 					CMD command param1 param2 (shell form)
 					There can only be one CMD instruction in a Dockerfile. If you list more than one CMD 
 					then only the last CMD will take effect.The main purpose of a CMD is to provide defaults
 					for an executing container. These defaults can include an executable, or they can omit the 
-					executable, in which case you must specify an ENTRYPOINT instruction as well.' 
-					placement='right' arrow>
+					executable, in which case you must specify an ENTRYPOINT instruction as well.'
+								placement='right'
+								arrow
+							>
 								<div>
 									<i class='uil uil-info-circle info__icon'></i>
 								</div>
