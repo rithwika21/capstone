@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import {
 	Container,
 	makeStyles,
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: "200px",
 	},
 	inputBx: {
+		position: "relative",
 		display: "flex",
 		alignItems: "center",
 	},
@@ -32,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
 		width: "100%",
 	},
 	p: {
+		color: "#333",
+	},
+	innerSubtitle: {
+		margin: "1rem 0 0.5rem 0.2rem",
+		fontWeight: "400",
 		color: "#333",
 	},
 }));
@@ -46,8 +52,76 @@ const LightTooltip = withStyles((theme) => ({
 	},
 }))(Tooltip);
 
+const reducer = (state, action) => {
+	const { type, payload } = action;
+	if (type === "COPY") {
+		state.copyList[payload.i].COPY = payload.value;
+		return state;
+	} else if (type === "RUN") {
+		state.runList[payload.i].RUN = payload.value;
+		return state;
+	} else {
+		return { ...state, [type]: payload };
+	}
+};
+
 export const CreationForm = () => {
+	const initialState = {
+		FROM: "",
+		WORKDIR: "",
+		copyList: [
+			{
+				COPY: "",
+			},
+		],
+		runList: [
+			{
+				RUN: "",
+			},
+		],
+		envList: [],
+		CMD: [],
+		otherList: [],
+	};
 	const classes = useStyles();
+	const [imageState, dispatch] = useReducer(reducer, initialState);
+
+	const { FROM, WORKDIR, copyList, runList, envList, CMD, otherList } =
+		imageState;
+
+	const addField = (type) => {
+		if (type === "copy") {
+			const newList = [...copyList];
+			newList.push({
+				COPY: "",
+			});
+			dispatch({ type: "copyList", payload: newList });
+		} else if (type === "run") {
+			const newList = [...runList];
+			newList.push({
+				RUN: "",
+			});
+			dispatch({ type: "runList", payload: newList });
+		}
+	};
+
+	const removeField = (type, index) => {
+		if (type === "copy") {
+			if (copyList.length === 1) {
+				return;
+			}
+			const newList = [...copyList];
+			newList.splice(index, 1);
+			dispatch({ type: "copyList", payload: newList });
+		} else if (type === "run") {
+			if (runList.length === 1) {
+				return;
+			}
+			const newList = [...runList];
+			newList.splice(index, 1);
+			dispatch({ type: "runList", payload: newList });
+		}
+	};
 
 	return (
 		<div>
@@ -120,6 +194,10 @@ export const CreationForm = () => {
 								name='baseImageName'
 								autoComplete='image'
 								color='primary'
+								value={FROM}
+								onChange={(e) =>
+									dispatch({ type: "FROM", payload: e.target.value })
+								}
 								InputProps={{
 									startAdornment: (
 										<InputAdornment position='start'>FROM</InputAdornment>
@@ -150,6 +228,10 @@ export const CreationForm = () => {
 								name='workdir'
 								autoComplete='workdir'
 								color='primary'
+								value={WORKDIR}
+								onChange={(e) => {
+									dispatch({ type: "WORKDIR", payload: e.target.value });
+								}}
 								InputProps={{
 									startAdornment: (
 										<InputAdornment position='start'>WORKDIR</InputAdornment>
@@ -162,52 +244,95 @@ export const CreationForm = () => {
 								</div>
 							</LightTooltip>
 						</Grid>
-						<Grid item xs={12} sm={12} className={classes.inputBx}>
-							<TextField
-								variant='outlined'
-								required
-								fullWidth
-								id='imageName'
-								label='Copy files from - to'
-								type='text'
-								name='imageName'
-								autoComplete='image'
-								color='primary'
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position='start'>COPY</InputAdornment>
-									),
-								}}
-							/>
-							<LightTooltip title='Add' placement='right' arrow>
-								<div>
-									<i class='uil uil-info-circle info__icon'></i>
-								</div>
-							</LightTooltip>
-						</Grid>
-						<Grid item xs={12} sm={12} className={classes.inputBx}>
-							<TextField
-								variant='outlined'
-								required
-								fullWidth
-								id='imageName'
-								label='Enter the shell command'
-								type='text'
-								name='imageName'
-								autoComplete='image'
-								color='primary'
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position='start'>RUN</InputAdornment>
-									),
-								}}
-							/>
-							<LightTooltip title='Add' placement='right' arrow>
-								<div>
-									<i class='uil uil-info-circle info__icon'></i>
-								</div>
-							</LightTooltip>
-						</Grid>
+						<Typography className={classes.innerSubtitle}>
+							COPY Arguments
+						</Typography>
+						{copyList.map((item, i) => {
+							return (
+								<Grid item xs={12} sm={12} className={classes.inputBx}>
+									<TextField
+										variant='outlined'
+										required
+										fullWidth
+										id='imageName'
+										label='Copy files from - to'
+										type='text'
+										name='imageName'
+										autoComplete='image'
+										color='primary'
+										onChange={(e) => {
+											const data = { i, value: e.target.value };
+											dispatch({ type: "COPY", payload: data });
+										}}
+										InputProps={{
+											startAdornment: (
+												<InputAdornment position='start'>COPY</InputAdornment>
+											),
+										}}
+									/>
+									<div className='add_remove'>
+										{copyList.length === i + 1 && (
+											<i
+												class='uil uil-plus-circle add__icon'
+												onClick={() => addField("copy")}
+											></i>
+										)}
+										<i
+											class='uil uil-minus-circle remove__icon'
+											onClick={() => removeField("copy", i)}
+										></i>
+									</div>
+									<LightTooltip title='Add' placement='right' arrow>
+										<div>
+											<i class='uil uil-info-circle info__icon'></i>
+										</div>
+									</LightTooltip>
+								</Grid>
+							);
+						})}
+						{runList.map((item, i) => {
+							return (
+								<Grid item xs={12} sm={12} className={classes.inputBx}>
+									<TextField
+										variant='outlined'
+										required
+										fullWidth
+										id='imageName'
+										label='Enter the shell command'
+										type='text'
+										name='imageName'
+										autoComplete='image'
+										color='primary'
+										onChange={(e) => {
+											const data = { i, value: e.target.value };
+											dispatch({ type: "RUN", payload: data });
+										}}
+										InputProps={{
+											startAdornment: (
+												<InputAdornment position='start'>RUN</InputAdornment>
+											),
+										}}
+									/>
+									<div className='add_remove'>
+										{runList.length === i + 1 && (
+											<i
+												class='uil uil-plus-circle add__icon'
+												onClick={() => addField("run")}
+											></i>
+										)}
+										<i
+											class='uil uil-minus-circle remove__icon'
+											onClick={() => removeField("run", i)}
+										></i>
+									</div>
+									<LightTooltip title='Add' placement='right' arrow>
+										<div>
+											<i class='uil uil-info-circle info__icon'></i>
+										</div>
+									</LightTooltip>
+								</Grid>
+							);
+						})}
 						<Grid item xs={12} sm={12} className={classes.inputBx}>
 							<TextField
 								variant='outlined'
@@ -219,6 +344,10 @@ export const CreationForm = () => {
 								name='imageName'
 								autoComplete='image'
 								color='primary'
+								value={CMD}
+								onChange={(e) => {
+									dispatch({ type: "CMD", payload: e.target.value });
+								}}
 								InputProps={{
 									startAdornment: (
 										<InputAdornment position='start'>CMD</InputAdornment>

@@ -9,3 +9,20 @@
 	font-size: 1.4rem;
 	margin-left: 0.5rem;
 }
+
+.add__icon {
+	font-size: 1.4rem;
+	float: right;
+	color: green;
+}
+
+.remove__icon {
+	font-size: 1.4rem;
+	float: right;
+	color: red;
+}
+
+.add_remove {
+	position: absolute;
+	right: 3rem;
+}
