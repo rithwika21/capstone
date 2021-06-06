@@ -1,7 +1,10 @@
+import MainComponent from "./components/MainComponent";
+import "./styles/index.css"
+
 function App() {
   return (
     <div className="App">
-      REACT APP
+      <MainComponent />
     </div>
   );
 }
