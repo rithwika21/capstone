@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	p: {
 		color: "#333",
+		opacity: "0.7",
 	},
 	innerSubtitle: {
 		margin: "1rem 0 0.5rem 0.2rem",
@@ -245,7 +246,7 @@ export const CreationForm = () => {
 							</LightTooltip>
 						</Grid>
 						<Typography className={classes.innerSubtitle}>
-							COPY Arguments
+							COPY Commands
 						</Typography>
 						{copyList.map((item, i) => {
 							return (
@@ -290,6 +291,9 @@ export const CreationForm = () => {
 								</Grid>
 							);
 						})}
+						<Typography className={classes.innerSubtitle}>
+							RUN Commands
+						</Typography>
 						{runList.map((item, i) => {
 							return (
 								<Grid item xs={12} sm={12} className={classes.inputBx}>
