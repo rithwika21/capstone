@@ -7,11 +7,8 @@ const router = express.Router();
 
 router.use(json());
 router.get("/api/images/all", async (req: Request, res: Response) => {
-	docker.listContainers(function (err: Error, containers: ContainerInfo[]) {
-		containers.forEach(function (containerInfo) {
-			// docker.getContainer(containerInfo.Id);
-			res.send({ containers });
-		});
+	docker.listContainers({ all: true }).then((result) => {
+		res.send(result);
 	});
 });
 
