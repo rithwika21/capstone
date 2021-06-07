@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: docker-image-builder
+  name: image-manager-depl
 spec:
   selector:
     matchLabels:
-      app: docker-image-builder
+      app: image-manager
   template:
     metadata:
       labels:
-        app: docker-image-builder
+        app: image-manager
     spec:
       containers:
-      - name: image-builder
+      - name: image-manager
         image: afif1400/image-service
         resources:
           limits:
@@ -25,3 +25,17 @@ spec:
         - hostPath:
             path: /var/run/docker.sock
           name: docker-socket
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-manager-srv
+spec:
+  selector:
+    app: image-manager
+  ports:
+    - name: image-manager
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
