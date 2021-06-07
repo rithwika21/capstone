@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-image-builder
+spec:
+  selector:
+    matchLabels:
+      app: docker-image-builder
+  template:
+    metadata:
+      labels:
+        app: docker-image-builder
+    spec:
+      containers:
+      - name: image-builder
+        image: afif1400/image-service
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "600m"
+        volumeMounts:
+          - name: docker-socket
+            mountPath: /var/run/docker.sock
+      volumes:
+        - hostPath:
+            path: /var/run/docker.sock
+          name: docker-socket
