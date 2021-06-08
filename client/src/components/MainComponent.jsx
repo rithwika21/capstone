@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { CreationForm } from "./images";
 import { DeploymentForm } from "./deployments";
 import NavBar from "./navbar";
+import { ImageManager } from "./images";
 import { SystemManager } from "./systemsManager";
 
 
@@ -13,9 +13,9 @@ const MainComponent = () => {
 		<BrowserRouter>
 			<NavBar />
 			<Switch>
-				<Route component={CreationForm} path='/createImage' />
 				<Route component={DeploymentForm} path='/deploy' />
-				<Route component={SystemManager} path='/systems' />
+				<Route component={ImageManager} path='/image' />
+				<Route component={SystemManager} exact path='/systems' />
 			</Switch>
 		</BrowserRouter>
 	);
