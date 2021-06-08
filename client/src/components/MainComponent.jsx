@@ -3,6 +3,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { CreationForm } from "./images";
 import { DeploymentForm } from "./deployments";
 import NavBar from "./navbar";
+import { SystemManager } from "./systemsManager";
+
+
+
 
 const MainComponent = () => {
 	return (
@@ -11,6 +15,10 @@ const MainComponent = () => {
 			<Switch>
 				<Route component={CreationForm} path='/createImage' />
 				<Route component={DeploymentForm} path='/deploy' />
+				<Route component={SystemManager} path='/systems' />
+				
+				
+
 			</Switch>
 		</BrowserRouter>
 	);
