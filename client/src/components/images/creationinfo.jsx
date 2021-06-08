@@ -32,7 +32,7 @@ function createData(Imagename,Description,Date_of_Creation) {
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const open = React.useState(false);
   const classes = useRowStyles();
 
   return (
