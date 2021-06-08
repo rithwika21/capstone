@@ -5,9 +5,6 @@ import NavBar from "./navbar";
 import { ImageManager } from "./images";
 import { SystemManager } from "./systemsManager";
 
-
-
-
 const MainComponent = () => {
 	return (
 		<BrowserRouter>
@@ -15,7 +12,7 @@ const MainComponent = () => {
 			<Switch>
 				<Route component={DeploymentForm} path='/deploy' />
 				<Route component={ImageManager} path='/image' />
-				<Route component={SystemManager} exact path='/systems' />
+				<Route component={SystemManager} path='/systems' />
 			</Switch>
 		</BrowserRouter>
 	);
