@@ -44,12 +44,12 @@ export default function NavBar() {
 					</IconButton>
 					<div style={{ display: "flex" }}>
 						<Link
-							to='/createImage'
+							to='/image'
 							variant='h6'
 							color='inherit'
 							className={classes.navlink}
 						>
-							Images
+							Image
 						</Link>
 						<Link
 							to='/deploy'
