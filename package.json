@@ -11,7 +11,7 @@
 		"husky": "^6.0.0"
 	},
 	"scripts": {
-		"prepare": "husky install"
+		"build:client": "npm --prefix client run build"
 	},
 	"dependencies": {}
 }
