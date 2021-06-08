@@ -11,7 +11,7 @@ $ cd client
 $ npm install or yarn       #if you use yarn use the second command
 $ npm start or yarn start   #This will start a dev server on localhost:3000
 ```
-In your browser open https://localhostL3000  
+In your browser open https://localhost:3000  
 <br />
 
 ## Contributing
