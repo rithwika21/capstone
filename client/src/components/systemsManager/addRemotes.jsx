@@ -1,11 +1,10 @@
-import React, { useReducer } from "react";
+import React from "react";
 import {
 	Container,
 	makeStyles,
 	TextField,
 	Grid,
 	Typography,
-	InputAdornment,
 	Button,
 	Tooltip,
 	withStyles,
@@ -53,76 +52,15 @@ const LightTooltip = withStyles((theme) => ({
 	},
 }))(Tooltip);
 
-const reducer = (state, action) => {
-	const { type, payload } = action;
-	if (type === "COPY") {
-		state.copyList[payload.i].COPY = payload.value;
-		return state;
-	} else if (type === "RUN") {
-		state.runList[payload.i].RUN = payload.value;
-		return state;
-	} else {
-		return { ...state, [type]: payload };
-	}
-};
+
 
 export const AddRemotes = () => {
-	const initialState = {
-		FROM: "",
-		WORKDIR: "",
-		copyList: [
-			{
-				COPY: "",
-			},
-		],
-		runList: [
-			{
-				RUN: "",
-			},
-		],
-		envList: [],
-		CMD: [],
-		otherList: [],
-	};
+
 	const classes = useStyles();
-	const [imageState, dispatch] = useReducer(reducer, initialState);
 
-	const { FROM, WORKDIR, copyList, runList, envList, CMD, otherList } =
-		imageState;
 
-	const addField = (type) => {
-		if (type === "copy") {
-			const newList = [...copyList];
-			newList.push({
-				COPY: "",
-			});
-			dispatch({ type: "copyList", payload: newList });
-		} else if (type === "run") {
-			const newList = [...runList];
-			newList.push({
-				RUN: "",
-			});
-			dispatch({ type: "runList", payload: newList });
-		}
-	};
 
-	const removeField = (type, index) => {
-		if (type === "copy") {
-			if (copyList.length === 1) {
-				return;
-			}
-			const newList = [...copyList];
-			newList.splice(index, 1);
-			dispatch({ type: "copyList", payload: newList });
-		} else if (type === "run") {
-			if (runList.length === 1) {
-				return;
-			}
-			const newList = [...runList];
-			newList.splice(index, 1);
-			dispatch({ type: "runList", payload: newList });
-		}
-	};
+
 
 	return (
 		<div>
@@ -131,7 +69,7 @@ export const AddRemotes = () => {
 					Add Remotes
 				</Typography>
 				<hr />
-				
+
 				<form className={classes.form}>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={12} className={classes.inputBx}>
@@ -202,14 +140,14 @@ export const AddRemotes = () => {
 								</div>
 							</LightTooltip>
 						</Grid>
-						
-						
-						
-						
-						
-						
-						
-						
+
+
+
+
+
+
+
+
 					</Grid>
 					<Button
 						type='submit'

@@ -88,7 +88,7 @@ export const CreationForm = () => {
 	const classes = useStyles();
 	const [imageState, dispatch] = useReducer(reducer, initialState);
 
-	const { FROM, WORKDIR, copyList, runList, envList, CMD, otherList } =
+	const { FROM, WORKDIR, copyList, runList, CMD } =
 		imageState;
 
 	const addField = (type) => {
