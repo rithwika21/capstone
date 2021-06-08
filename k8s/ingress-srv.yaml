@@ -19,3 +19,10 @@ spec:
               name: image-manager-srv
               port: 
                 number: 5000
+        - path: /?(.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: client-srv
+              port:
+                number: 3000
