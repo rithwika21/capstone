@@ -15,7 +15,7 @@ const MainComponent = () => {
 			<Switch>
 				<Route component={DeploymentForm} path='/deploy' />
 				<Route component={ImageManager} path='/image' />
-				<Route component={SystemManager} path='/systems' />
+				<Route component={SystemManager} exact path='/systems' />
 			</Switch>
 		</BrowserRouter>
 	);
