@@ -52,12 +52,12 @@ export default function NavBar() {
 							Image
 						</Link>
 						<Link
-							to='/deploy'
+							to='/systems'
 							variant='h6'
 							color='inherit'
 							className={classes.navlink}
 						>
-							Deployments
+							Systems
 						</Link>
 
 					</div>

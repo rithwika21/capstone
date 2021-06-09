@@ -58,10 +58,6 @@ export const AddRemotes = () => {
 
 	const classes = useStyles();
 
-
-
-
-
 	return (
 		<div>
 			<Container component='main' style={{ marginTop: "2rem" }}>
