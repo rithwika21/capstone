@@ -25,26 +25,26 @@ can use these in commit messages
 
 | Commit Typye      |  Emoji                      |
 |-------------------|-----------------------------|
-| Chore             | ⚙️ :gear:                   |
-| CI                | 🚀 :rocket:                 |
-| Documentation     | 📝 :memo:                   |
-| Feature           | ⭐ :star:                   |
-| Fix / Bug         | 🐞 :beetle:                 |
-| Performance       | ⚡️ :zap:                    |
-| Release           | 🔖 :bookmark:               |
-| Tests             | 🧪 :test_tube:              |
-| UX                | 🚸 :children_crossing:      |
-| Config            | 🛠️ :hammer_and_wrench:      |
-| Logs              | 🔊 :loud_sound:             |
-| Metadata          | 📖 :open_book:              |
-| Revert            | 🦔 :hedgehog:               |
-| Fix tests         | ✔️ :heavy_check_mark:       |
-| Typo              | ✏️ :pencil2:                |
-| Code abstraction  | 〰️ :wavy_dash:              |
-| Renaming          | 🏷️ :label:                  |
-| Code reuse        | ➰ :curly_loop:             |
-| E2E tests         | 🎢 :roller_coaster:         |
-| Unit tests        | 🚦 :vertical_traffic_light: | 
-| Alternative text  | 💬 :speech_balloon:         |
-| Responsive design | 📲 :calling:                |
-| UI                | 🖥️ :desktop_computer:       |
+| Chore             | ⚙️ `:gear:`                   |
+| CI                | 🚀 `:rocket: `                |
+| Documentation     | 📝 `:memo:`                   |
+| Feature           | ⭐ `:star:`                   |
+| Fix / Bug         | 🐞 `:beetle:`                 |
+| Performance       | ⚡️ `:zap:`                    |
+| Release           | 🔖 `:bookmark:`               |
+| Tests             | 🧪 `:test_tube:`              |
+| UX                | 🚸 `:children_crossing:`      |
+| Config            | 🛠️ `:hammer_and_wrench:`      |
+| Logs              | 🔊 `:loud_sound:`             |
+| Metadata          | 📖 `:open_book:`              |
+| Revert            | 🦔 `:hedgehog:`               |
+| Fix tests         | ✔️ `:heavy_check_mark:`       |
+| Typo              | ✏️ `:pencil2:`                |
+| Code abstraction  | 〰️ `:wavy_dash:`              |
+| Renaming          | 🏷️ `:label:`                  |
+| Code reuse        | ➰ `:curly_loop:`             |
+| E2E tests         | 🎢 `:roller_coaster:`         |
+| Unit tests        | 🚦 `:vertical_traffic_light:` | 
+| Alternative text  | 💬 `:speech_balloon:`         |
+| Responsive design | 📲 `:calling:`                |
+| UI                | 🖥️ `:desktop_computer:`       |
