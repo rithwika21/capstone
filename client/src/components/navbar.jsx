@@ -44,7 +44,7 @@ export default function NavBar() {
 					</IconButton>
 					<div style={{ display: "flex" }}>
 						<Link
-							to='/image'
+							to='/imagemanager'
 							variant='h6'
 							color='inherit'
 							className={classes.navlink}

@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const LightTooltip = withStyles((theme) => ({
+export const LightTooltip = withStyles((theme) => ({
 	tooltip: {
 		backgroundColor: theme.palette.common.white,
 		color: "rgba(0, 0, 0, 0.87)",

@@ -11,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import { Container, Button } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
   root: {
@@ -20,7 +21,7 @@ const useRowStyles = makeStyles({
   },
 });
 
-function createData(Imagename,Description,Date_of_Creation) {
+function createData(Imagename, Description, Date_of_Creation) {
   return {
     Imagename,
     Description,
@@ -38,14 +39,21 @@ function Row(props) {
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
-        
+
         <TableCell component="th" scope="row">
-          {row.Imagename}
+          1
         </TableCell>
-        <TableCell>{row.Description}</TableCell>
+        <TableCell>Ubuntu</TableCell>
+        <TableCell>Container One</TableCell>
         <TableCell>{row.Date_of_Creation}</TableCell>
+        <TableCell>running</TableCell>
+        <TableCell>
+          <Button color="secondary" variant="outlined" style={{ marginRight: "1rem" }}>key</Button>
+          <Button color="secondary" variant="outlined" style={{ marginRight: "1rem" }}>Deploy</Button>
+          <Button color="secondary" variant="outlined">Edit</Button>
+        </TableCell>
       </TableRow>
-      <TableRow>
+      {/* <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
@@ -59,8 +67,8 @@ function Row(props) {
                     <TableCell>WorkDir</TableCell>
                     <TableCell>Copy</TableCell>
                     <TableCell>Run</TableCell>
-					<TableCell>Cmd</TableCell>
-					
+                    <TableCell>Cmd</TableCell>
+
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -71,8 +79,8 @@ function Row(props) {
                       </TableCell>
                       <TableCell>{ArgumentsRow.WorkDir}</TableCell>
                       <TableCell>{ArgumentsRow.Copy}</TableCell>
-					  <TableCell>{ArgumentsRow.Run}</TableCell>
-					  <TableCell>{ArgumentsRow.Cmd}</TableCell>
+                      <TableCell>{ArgumentsRow.Run}</TableCell>
+                      <TableCell>{ArgumentsRow.Cmd}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -80,7 +88,7 @@ function Row(props) {
             </Box>
           </Collapse>
         </TableCell>
-      </TableRow>
+      </TableRow> */}
     </React.Fragment>
   );
 }
@@ -94,8 +102,8 @@ Row.propTypes = {
         Copy: PropTypes.string.isRequired,
         WorkDir: PropTypes.string.isRequired,
         From: PropTypes.string.isRequired,
-		Run:PropTypes.string.isRequired,
-		Cmd:PropTypes.string.isRequired,
+        Run: PropTypes.string.isRequired,
+        Cmd: PropTypes.string.isRequired,
       }),
     ).isRequired,
     Imagename: PropTypes.string.isRequired,
@@ -103,33 +111,37 @@ Row.propTypes = {
 };
 
 const rows = [
-  createData('Image1','This is Image1','26/01/2021'),
+  createData('Image1', 'This is Image1', '26/01/2021'),
 ];
 
 export const CreationInfo = () => {
   return (
-	<TableContainer component={Paper}>
-		<br/>
-		<Typography component='h2' variant='h5'>
-	List of Images Created
-	</Typography>
-	<hr />
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Imagename</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Date_of_Creation&nbsp;</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Container maxWidth="lg" style={{ marginTop: "2rem" }}>
+      <TableContainer>
+        <br />
+        <Typography component='h2' variant='h5'>
+          List of Images Created
+        </Typography>
+        <hr />
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Image Name</TableCell>
+              <TableCell>Container Name</TableCell>
+              <TableCell>Created At</TableCell>
+              <TableCell>Container State</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <Row key={row.name} row={row} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
   );
 }
 
