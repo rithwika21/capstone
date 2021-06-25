@@ -5,7 +5,6 @@ const ImageList = ({ setBaseImage }) => {
     <div>
       <section className="image_list">
         <div onChange={(e) => {
-          console.log(e.target.value)
           setBaseImage(e.target.value)
         }}>
           <input type="radio" id="image_1" name="select" value="1" />
