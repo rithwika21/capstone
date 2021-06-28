@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Typography, makeStyles, Grid, TextField, Button } from '@material-ui/core'
 import '../../styles/images.css'
 // import ubuntuIcon from '../../assets/images/ubuntu.svg';
 import { LightTooltip } from '../images'
-import { Link } from "react-router-dom"
+import ImageList from './imageList'
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
   label: {
@@ -27,47 +28,34 @@ const useStyles = makeStyles((theme) => ({
 
 const Images = () => {
   const classes = useStyles()
+
+  const [baseImage, setBaseImage] = useState("");
+  const [imageTag, setImageTag] = useState("");
+  const [containeName, setContaineName] = useState("")
+
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const containerValues = {
+      baseImage,
+      imageTag,
+      containeName
+    }
+
+    console.log(containerValues);
+    axios.post('/api/container/create', containerValues).then((res) => {
+      console.log(res)
+    })
+  }
+
   return (
     <div style={{ margin: "0 auto" }}>
       <Typography variant="p" className={classes.label}>
         Choose an image
       </Typography>
-      {/* <ImageList /> */}
-      <form action="">
-
-        <section className="image_list">
-          <div>
-            <input type="radio" id="image_1" name="select" value="1" />
-            <label className="image_label" for="image_1">
-              {/* <img src={ubuntuIcon} alt="icon" /> */}
-              <h2>Ubuntu</h2>
-            </label>
-          </div>
-          <div>
-            <input type="radio" id="image_2" name="select" value="2" />
-            <label className="image_label" for="image_2">
-              <h2>FreeBSD</h2>
-            </label>
-          </div>
-          <div>
-            <input type="radio" id="image_3" name="select" value="3" />
-            <label className="image_label" for="image_3">
-              <h2>Fedora</h2>
-            </label>
-          </div>
-          <div>
-            <input type="radio" id="image_4" name="select" value="4" disabled />
-            <label className="image_label" for="image_4">
-              <h2>Arch</h2>
-            </label>
-          </div>
-          <div>
-            <input type="radio" id="image_5" name="select" value="5" />
-            <label className="image_label" for="image_5">
-              <h2>Node</h2>
-            </label>
-          </div>
-        </section>
+      <form onSubmit={onSubmit}>
+        <ImageList setBaseImage={setBaseImage} baseImage={baseImage} />
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} className={classes.inputBx}>
             <TextField
@@ -79,6 +67,8 @@ const Images = () => {
               name='imageName'
               autoComplete='image'
               color='primary'
+              value={imageTag}
+              onChange={(e) => setImageTag(e.target.value)}
             />
             <LightTooltip title='Add' placement='right' arrow>
               <div>
@@ -96,6 +86,8 @@ const Images = () => {
               name='description'
               autoComplete='description'
               color='primary'
+              value={containeName}
+              onChange={(e) => setContaineName(e.target.value)}
             />
             <LightTooltip title='Add' placement='right' arrow>
               <div>
@@ -110,9 +102,10 @@ const Images = () => {
             color='primary'
             className={classes.submit}
           >
-            <Link to="/imagemanager/view" style={{ textDecoration: "none", color: "inherit" }}>
+            Create
+            {/* <Link to="/imagemanager/view" style={{ textDecoration: "none", color: "inherit" }}>
               Create
-            </Link>
+            </Link> */}
           </Button>
         </Grid>
       </form>

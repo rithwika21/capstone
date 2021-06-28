@@ -12,7 +12,7 @@ spec:
   - host: capstone.dev
     http:
       paths:
-        - path: /api/images/*
+        - path: /api/*
           pathType: Prefix 
           backend:
             service:
