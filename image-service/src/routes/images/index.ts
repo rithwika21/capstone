@@ -1,15 +1,14 @@
 import { json } from "body-parser";
-import { docker } from "../../utils/dockersock";
 import express, { Request, Response } from "express";
-import { ContainerInfo } from "dockerode";
+import ContainerModel from "../../models/container";
 
 const router = express.Router();
 
 router.use(json());
-router.get("/api/images/all", async (req: Request, res: Response) => {
-	docker.listContainers({ all: true }).then((result) => {
-		res.send(result);
-	});
+router.get("/all", async (req: Request, res: Response) => {
+	const containers = await ContainerModel.find({});
+	console.log(containers);
+	res.json(containers);
 });
 
 export { router as indexImageRouter };

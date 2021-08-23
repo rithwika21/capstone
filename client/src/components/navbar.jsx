@@ -59,7 +59,22 @@ export default function NavBar() {
 						>
 							Systems
 						</Link>
-
+						<Link
+							to='/systems'
+							variant='h6'
+							color='inherit'
+							className={classes.navlink}
+						>
+							Users
+						</Link>
+						<Link
+							to='/systems'
+							variant='h6'
+							color='inherit'
+							className={classes.navlink}
+						>
+							Deploy
+						</Link>
 					</div>
 				</Toolbar>
 			</AppBar>

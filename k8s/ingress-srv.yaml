@@ -12,13 +12,20 @@ spec:
   - host: capstone.dev
     http:
       paths:
-        - path: /api/*
+        - path: /api/?(.*)
           pathType: Prefix 
           backend:
             service:
               name: image-manager-srv
               port: 
                 number: 5000
+        - path: /kubeapi/?(.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: kube-api-srv
+              port:
+                number: 3000
         - path: /?(.*)
           pathType: Prefix
           backend:

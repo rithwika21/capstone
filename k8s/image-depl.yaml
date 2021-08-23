@@ -18,13 +18,6 @@ spec:
           limits:
             memory: "500Mi"
             cpu: "600m"
-        volumeMounts:
-          - name: docker-socket
-            mountPath: /var/run/docker.sock
-      volumes:
-        - hostPath:
-            path: /var/run/docker.sock
-          name: docker-socket
 
 ---
 apiVersion: v1
@@ -32,6 +25,7 @@ kind: Service
 metadata:
   name: image-manager-srv
 spec:
+  type: LoadBalancer
   selector:
     app: image-manager
   ports:
@@ -39,3 +33,5 @@ spec:
       protocol: TCP
       port: 5000
       targetPort: 5000
+
+

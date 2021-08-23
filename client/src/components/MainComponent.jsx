@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./navbar";
 import { ImageManager } from "./images";
 import { SystemManager } from "./systemsManager";
-import Dashboard from "./Imagemanager/dashboard";
+// import { View } from "./View";
 
 const MainComponent = () => {
 	return (
@@ -11,7 +11,8 @@ const MainComponent = () => {
 			<NavBar />
 			<Switch>
 				<Route component={SystemManager} path='/systems' />
-				<Route component={ImageManager} path="/imagemanager" />
+				<Route component={ImageManager} path='/imagemanager' />
+				{/* <Route component={View} exact path='/container/view' /> */}
 			</Switch>
 		</BrowserRouter>
 	);

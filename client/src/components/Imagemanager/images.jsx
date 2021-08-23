@@ -5,6 +5,7 @@ import '../../styles/images.css'
 import { LightTooltip } from '../images'
 import ImageList from './imageList'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   label: {
@@ -27,25 +28,33 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Images = () => {
+  const history = useHistory()
   const classes = useStyles()
 
   const [baseImage, setBaseImage] = useState("");
   const [imageTag, setImageTag] = useState("");
   const [containeName, setContaineName] = useState("")
+  const [username, setUsername] = useState("guest")
+  const [password, setPassword] = useState("")
 
 
   const onSubmit = (e) => {
     e.preventDefault();
+    var randomId = Math.floor(1000 + Math.random() * 90000);
 
     const containerValues = {
       baseImage,
       imageTag,
-      containeName
+      containerName: `shellinabox-${randomId}`,
+      username,
+      password
     }
 
     console.log(containerValues);
-    axios.post('/api/container/create', containerValues).then((res) => {
-      console.log(res)
+    axios.post('/api/container/allocate', containerValues).then((res) => {
+      console.log(res.data)
+      window.open(`http://${res.data.ip}:${res.data.port}`, '_blank');
+      // history.push("/contianer/view")
     })
   }
 
@@ -62,7 +71,7 @@ const Images = () => {
               variant='outlined'
               fullWidth
               id='imageName'
-              label='Image Name'
+              label='Image Name(optional)'
               type='text'
               name='imageName'
               autoComplete='image'
@@ -72,7 +81,7 @@ const Images = () => {
             />
             <LightTooltip title='Add' placement='right' arrow>
               <div>
-                <i class='uil uil-info-circle info__icon'></i>
+                <i className='uil uil-info-circle info__icon'></i>
               </div>
             </LightTooltip>
           </Grid>
@@ -81,7 +90,7 @@ const Images = () => {
               variant='outlined'
               fullWidth
               id='description'
-              label='Container Name'
+              label='Container Name (optional)'
               type='textarea'
               name='description'
               autoComplete='description'
@@ -91,7 +100,46 @@ const Images = () => {
             />
             <LightTooltip title='Add' placement='right' arrow>
               <div>
-                <i class='uil uil-info-circle info__icon'></i>
+                <i className='uil uil-info-circle info__icon'></i>
+              </div>
+            </LightTooltip>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} className={classes.inputBx}>
+            <TextField
+              variant='outlined'
+              fullWidth
+              id='username'
+              label='username'
+              // type='textarea'
+              name='username'
+              autoComplete='username'
+              color='primary'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <LightTooltip title='Add' placement='right' arrow>
+              <div>
+                <i className='uil uil-info-circle info__icon'></i>
+              </div>
+            </LightTooltip>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} className={classes.inputBx}>
+            <TextField
+              required
+              variant='outlined'
+              fullWidth
+              id='password'
+              label='password'
+              type='text'
+              name='password'
+              autoComplete='password'
+              color='primary'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <LightTooltip title='Add' placement='right' arrow>
+              <div>
+                <i className='uil uil-info-circle info__icon'></i>
               </div>
             </LightTooltip>
           </Grid>
@@ -99,7 +147,7 @@ const Images = () => {
             type='submit'
             fullWidth
             variant='contained'
-            color='primary'
+            color='secondary'
             className={classes.submit}
           >
             Create

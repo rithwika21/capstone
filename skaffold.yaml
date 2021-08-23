@@ -25,4 +25,12 @@ build:
       sync:
         manual:
           - dest: .
-            src: 'src/*'
+            src: 'src/**/*.jsx'
+    - image: afif1400/kube-api
+      context: api
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*'

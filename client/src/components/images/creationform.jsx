@@ -154,7 +154,7 @@ export const CreationForm = () => {
 							/>
 							<LightTooltip title='Add' placement='right' arrow>
 								<div>
-									<i class='uil uil-info-circle info__icon'></i>
+									<i className='uil uil-info-circle info__icon'></i>
 								</div>
 							</LightTooltip>
 						</Grid>
@@ -171,7 +171,7 @@ export const CreationForm = () => {
 							/>
 							<LightTooltip title='Add' placement='right' arrow>
 								<div>
-									<i class='uil uil-info-circle info__icon'></i>
+									<i className='uil uil-info-circle info__icon'></i>
 								</div>
 							</LightTooltip>
 						</Grid>
@@ -215,7 +215,7 @@ export const CreationForm = () => {
 								arrow
 							>
 								<div>
-									<i class='uil uil-info-circle info__icon'></i>
+									<i className='uil uil-info-circle info__icon'></i>
 								</div>
 							</LightTooltip>
 						</Grid>
@@ -248,7 +248,7 @@ export const CreationForm = () => {
 								arrow
 							>
 								<div>
-									<i class='uil uil-info-circle info__icon'></i>
+									<i className='uil uil-info-circle info__icon'></i>
 								</div>
 							</LightTooltip>
 						</Grid>
@@ -281,12 +281,12 @@ export const CreationForm = () => {
 									<div className='add_remove'>
 										{copyList.length === i + 1 && (
 											<i
-												class='uil uil-plus-circle add__icon'
+												className='uil uil-plus-circle add__icon'
 												onClick={() => addField("copy")}
 											></i>
 										)}
 										<i
-											class='uil uil-minus-circle remove__icon'
+											className='uil uil-minus-circle remove__icon'
 											onClick={() => removeField("copy", i)}
 										></i>
 									</div>
@@ -299,7 +299,7 @@ export const CreationForm = () => {
 										arrow
 									>
 										<div>
-											<i class='uil uil-info-circle info__icon'></i>
+											<i className='uil uil-info-circle info__icon'></i>
 										</div>
 									</LightTooltip>
 								</Grid>
@@ -334,12 +334,12 @@ export const CreationForm = () => {
 									<div className='add_remove'>
 										{runList.length === i + 1 && (
 											<i
-												class='uil uil-plus-circle add__icon'
+												className='uil uil-plus-circle add__icon'
 												onClick={() => addField("run")}
 											></i>
 										)}
 										<i
-											class='uil uil-minus-circle remove__icon'
+											className='uil uil-minus-circle remove__icon'
 											onClick={() => removeField("run", i)}
 										></i>
 									</div>
@@ -350,7 +350,7 @@ export const CreationForm = () => {
 										arrow
 									>
 										<div>
-											<i class='uil uil-info-circle info__icon'></i>
+											<i className='uil uil-info-circle info__icon'></i>
 										</div>
 									</LightTooltip>
 								</Grid>
@@ -390,7 +390,7 @@ export const CreationForm = () => {
 								arrow
 							>
 								<div>
-									<i class='uil uil-info-circle info__icon'></i>
+									<i className='uil uil-info-circle info__icon'></i>
 								</div>
 							</LightTooltip>
 						</Grid>
