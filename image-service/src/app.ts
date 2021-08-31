@@ -6,7 +6,7 @@ import { indexContainerRouter } from "./routes/containers";
 const app = express();
 
 app.use(json());
-app.use("/api/images", indexImageRouter);
-app.use("/api/container", indexContainerRouter);
+app.use("/api/image/images", indexImageRouter);
+app.use("/api/image/container", indexContainerRouter);
 
 export { app };

@@ -55,12 +55,12 @@ function Row(props) {
 						style={{ marginRight: "1rem", marginBottom: "1rem" }}
 						onClick={() => {
 							axios
-								.post("/api/container/save", {
+								.post("/api/image/container/save", {
 									containerId: row.containerId,
 								})
 								.then((response) => {
 									console.log(response);
-									axios.get("/api/images/all").then((response) => {
+									axios.get("/api/image/images/all").then((response) => {
 										setContainer(response.data);
 									});
 								});
@@ -75,10 +75,12 @@ function Row(props) {
 						style={{ marginBottom: "1rem" }}
 						onClick={() => {
 							axios
-								.post(`/api/container/stop`, { containerId: row.containerId })
+								.post(`/api/image/container/stop`, {
+									containerId: row.containerId,
+								})
 								.then((response) => {
 									console.log(response);
-									axios.get("/api/images/all").then((response) => {
+									axios.get("/api/image/images/all").then((response) => {
 										setContainer(response.data);
 									});
 								});
@@ -151,7 +153,7 @@ export const CreationInfo = () => {
 	const [container, setContainer] = React.useState(null);
 
 	useEffect(() => {
-		axios.get("/api/images/all").then((response) => {
+		axios.get("/api/image/images/all").then((response) => {
 			setContainer(response.data);
 		});
 		console.log(container);

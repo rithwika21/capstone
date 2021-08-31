@@ -18,6 +18,14 @@ build:
         manual:
           - dest: .
             src: 'src/*'
+    - image: afif1400/system-service
+      context: system-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: 'src/*'
     - image: afif1400/client-service
       context: client
       docker:
@@ -26,11 +34,3 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.jsx'
-    - image: afif1400/kube-api
-      context: api
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - dest: .
-            src: '*'
