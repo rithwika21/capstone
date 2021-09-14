@@ -12,6 +12,5 @@
 	},
 	"scripts": {
 		"build:client": "npm --prefix client run build"
-	},
-	"dependencies": {}
+	}
 }

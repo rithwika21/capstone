@@ -35,6 +35,18 @@ export const ImageDefault = () => {
 				handleClickOpen={handleClickOpen}
 				handleClose={handleClose}
 			/>
+			<Button
+				variant='contained'
+				color='secondary'
+				style={{ marginLeft: "10px" }}
+			>
+				<Link
+					to={`${path}/images_running`}
+					style={{ textDecoration: "none", color: "#fff" }}
+				>
+					Images Created				
+				</Link>
+			</Button>
 		</div>
 	);
 };
