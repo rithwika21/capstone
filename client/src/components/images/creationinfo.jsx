@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Collapse from "@material-ui/core/Collapse";
+
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -10,7 +9,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import { Container, Button } from "@material-ui/core";
 import axios from "axios";
 
@@ -46,7 +44,7 @@ function Row(props) {
 				<TableCell>{row.baseImage}</TableCell>
 				{/* <TableCell>{row.containerName}</TableCell> */}
 				<TableCell>{row.createdAt}</TableCell>
-				<TableCell>{row.state}</TableCell>
+				{/* <TableCell>{row.state}</TableCell> */}
 				<TableCell>
 					{/* <Button color="secondary" variant="outlined" style={{ marginRight: "1rem" }}>key</Button> */}
 					<Button
@@ -55,77 +53,24 @@ function Row(props) {
 						style={{ marginRight: "1rem", marginBottom: "1rem" }}
 						onClick={() => {
 							axios
-								.post("/api/image/container/save", {
-									containerId: row.containerId,
+								.post("/api/image/container/create", {
+									baseImage: row.baseImage,
+									containerName: row.containerName,
 								})
 								.then((response) => {
 									console.log(response);
+									const { port, ip } = response.data;
+									window.open(`http://${ip}:${port}`);
 									axios.get("/api/image/images/all").then((response) => {
 										setContainer(response.data);
 									});
 								});
 						}}
 					>
-						{row.state === "Running" ? "commit" : "deploy"}
-					</Button>
-
-					<Button
-						color='secondary'
-						variant='outlined'
-						style={{ marginBottom: "1rem" }}
-						onClick={() => {
-							axios
-								.post(`/api/image/container/stop`, {
-									containerId: row.containerId,
-								})
-								.then((response) => {
-									console.log(response);
-									axios.get("/api/image/images/all").then((response) => {
-										setContainer(response.data);
-									});
-								});
-						}}
-					>
-						stop
+						use
 					</Button>
 				</TableCell>
 			</TableRow>
-			{/* <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                Arguments
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>From</TableCell>
-                    <TableCell>WorkDir</TableCell>
-                    <TableCell>Copy</TableCell>
-                    <TableCell>Run</TableCell>
-                    <TableCell>Cmd</TableCell>
-
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.Arguments.map((ArgumentsRow) => (
-                    <TableRow key={ArgumentsRow.From}>
-                      <TableCell component="th" scope="row">
-                        {ArgumentsRow.From}
-                      </TableCell>
-                      <TableCell>{ArgumentsRow.WorkDir}</TableCell>
-                      <TableCell>{ArgumentsRow.Copy}</TableCell>
-                      <TableCell>{ArgumentsRow.Run}</TableCell>
-                      <TableCell>{ArgumentsRow.Cmd}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow> */}
 		</React.Fragment>
 	);
 }
@@ -164,7 +109,7 @@ export const CreationInfo = () => {
 			<TableContainer>
 				<br />
 				<Typography component='h2' variant='h5'>
-					List of Images Created
+					Image Catalog
 				</Typography>
 				<hr />
 				<Table aria-label='collapsible table'>
@@ -174,7 +119,7 @@ export const CreationInfo = () => {
 							<TableCell>Image Name</TableCell>
 							{/* <TableCell>Container Name</TableCell> */}
 							<TableCell>Created At</TableCell>
-							<TableCell>Container State</TableCell>
+							{/* <TableCell>Creator</TableCell> */}
 							<TableCell>Actions</TableCell>
 						</TableRow>
 					</TableHead>

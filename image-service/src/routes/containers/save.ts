@@ -8,11 +8,11 @@ router.use(json());
 
 router.post("/save", async (req: Request, res: Response) => {
 	const { containerId } = req.body;
-
+	const rn = Math.floor(Math.random() * 10000 + 1);
 	await axios
 		.post("http://3.89.213.136:3000/api/container/commit", {
 			containerId,
-			tag: "newimage-1",
+			tag: `image-${rn}`,
 		})
 		.then(async ({ data }: AxiosResponse) => {
 			console.log(data);
