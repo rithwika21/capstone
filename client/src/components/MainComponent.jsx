@@ -7,6 +7,7 @@ import { SystemManager } from "./systemsManager";
 import {ViewRemotes} from "./systemsManager";
 import {SignUp} from "./Authentication";
 import {SignIn} from "./Authentication";
+import { ScheduleDeployments } from "./Deployments" ;
 
 const MainComponent = () => {
 	return (
@@ -16,6 +17,7 @@ const MainComponent = () => {
 			<Switch>
 				<Route component={SystemManager} path='/systems' />
 				<Route component={ImageManager} path='/imagemanager' />
+				<Route component={ScheduleDeployments} path='/Deployments' />
 				{/* <Route component={View} exact path='/container/view' /> */}
 				<Route component={ViewRemotes} path={`/view`} />
 				<Route component={SignIn} path={`/signin`} />

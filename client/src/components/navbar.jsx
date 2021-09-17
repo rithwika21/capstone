@@ -68,7 +68,7 @@ export default function NavBar() {
 							Users
 						</Link>
 						<Link
-							to='/systems'
+							to='/Deployments' 
 							variant='h6'
 							color='inherit'
 							className={classes.navlink}

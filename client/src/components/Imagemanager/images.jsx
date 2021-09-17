@@ -107,6 +107,44 @@ const Images = () => {
 							</div>
 						</LightTooltip>
 					</Grid>
+					<Grid item xs={12} sm={12} className={classes.inputBx}>
+            <TextField
+              variant='outlined'
+              fullWidth
+              id='description'
+              label='Lab name'
+              type='textarea'
+              name='description'
+              autoComplete='description'
+              color='primary'
+              value={containeName}
+              onChange={(e) => setContaineName(e.target.value)}
+            />
+            <LightTooltip title='Add' placement='right' arrow>
+              <div>
+                <i className='uil uil-info-circle info__icon'></i>
+              </div>
+            </LightTooltip>
+          </Grid>
+          <Grid item xs={12} sm={12} className={classes.inputBx}>
+            <TextField
+              variant='outlined'
+              fullWidth
+              id='description'
+              label='Subject'
+              type='textarea'
+              name='description'
+              autoComplete='description'
+              color='primary'
+              value={containeName}
+              onChange={(e) => setContaineName(e.target.value)}
+            />
+            <LightTooltip title='Add' placement='right' arrow>
+              <div>
+                <i className='uil uil-info-circle info__icon'></i>
+              </div>
+            </LightTooltip>
+          </Grid>
 					<Grid item xs={12} sm={12} md={6} className={classes.inputBx}>
 						<TextField
 							variant='outlined'
